@@ -2,6 +2,7 @@ using API.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using API.Services.Interface;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 namespace API.Controllers;
 public class AccountController : BaseApiController
 {
@@ -13,6 +14,7 @@ public class AccountController : BaseApiController
         this._usersService = usersService;
  
     }
+    [AllowAnonymous]
     [HttpPost("register")]
     public async Task<ActionResult> Register(RegisterDto registerDto)
     {
@@ -20,6 +22,7 @@ public class AccountController : BaseApiController
         return StatusCode(response.StatusCode, response);
 
     }
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult> Login(LoginDto loginDto)
     {
